@@ -34,7 +34,7 @@ class SimpleReport:
             ).date()
             >= hoje
         ]
-        empresa = max(set(empresas), key=empresas.count)
+        empresa = max(empresas, key=empresas.count)
         return (
             f"Data de fabricação mais antiga: {fabrica.strftime('%Y-%m-%d')}\n"
             f"Data de validade mais próxima: {validade.strftime('%Y-%m-%d')}\n"
