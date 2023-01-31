@@ -7,33 +7,27 @@ class SimpleReport:
         fabrica = None
         validade = None
         empresa = None
-        hoje = datetime.now().date()
+        hoje = datetime.now()
         datas_fabricacao = [
-            datetime.strptime(produto["data_de_fabricacao"], "%Y-%m-%d").date()
+            datetime.strptime(produto["data_de_fabricacao"], "%Y-%m-%d")
             for produto in data
-            if datetime.strptime(
-                produto["data_de_validade"], "%Y-%m-%d"
-            ).date()
+            if datetime.strptime(produto["data_de_validade"], "%Y-%m-%d")
             >= hoje
         ]
-        fabrica = min(datas_fabricacao)
         datas_validade = [
-            datetime.strptime(produto["data_de_validade"], "%Y-%m-%d").date()
+            datetime.strptime(produto["data_de_validade"], "%Y-%m-%d")
             for produto in data
-            if datetime.strptime(
-                produto["data_de_validade"], "%Y-%m-%d"
-            ).date()
+            if datetime.strptime(produto["data_de_validade"], "%Y-%m-%d")
             >= hoje
         ]
-        validade = min(datas_validade)
         empresas = [
             produto["nome_da_empresa"]
             for produto in data
-            if datetime.strptime(
-                produto["data_de_validade"], "%Y-%m-%d"
-            ).date()
+            if datetime.strptime(produto["data_de_validade"], "%Y-%m-%d")
             >= hoje
         ]
+        fabrica = min(datas_fabricacao)
+        validade = min(datas_validade)
         empresa = max(empresas, key=empresas.count)
         return (
             f"Data de fabricação mais antiga: {fabrica.strftime('%Y-%m-%d')}\n"
