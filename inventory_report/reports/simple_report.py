@@ -8,11 +8,11 @@ class SimpleReport:
         for product in data:
             data_de_fabricacao = product["data_de_fabricacao"]
             data_de_validade = product["data_de_validade"]
+            nome_da_empresa = product["nome_da_empresa"]
             if not oldest or data_de_fabricacao < oldest:
                 oldest = data_de_fabricacao
             if not nearest or data_de_validade < nearest:
                 nearest = data_de_validade
-            nome_da_empresa = product["nome_da_empresa"]
             company_count = data.count(product)
             if company_count > max:
                 max = company_count
