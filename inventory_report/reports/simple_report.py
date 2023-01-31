@@ -4,7 +4,7 @@ from datetime import datetime
 class SimpleReport:
     @staticmethod
     def generate(data):
-        fabricaçao = None
+        fabrica = None
         validade = None
         empresa = None
         hoje = datetime.now().date()
@@ -16,8 +16,7 @@ class SimpleReport:
             ).date()
             >= hoje
         ]
-        if datas_fabricacao:
-            fabricaçao = min(datas_fabricacao)
+        fabrica = min(datas_fabricacao)
         datas_validade = [
             datetime.strptime(produto["data_de_validade"], "%Y-%m-%d").date()
             for produto in data
@@ -26,8 +25,7 @@ class SimpleReport:
             ).date()
             >= hoje
         ]
-        if datas_validade:
-            validade = min(datas_validade)
+        validade = min(datas_validade)
         empresas = [
             produto["nome_da_empresa"]
             for produto in data
@@ -36,10 +34,9 @@ class SimpleReport:
             ).date()
             >= hoje
         ]
-        if empresas:
-            empresa = max(set(empresas), key=empresas.count)
-        return f"""
-        Data de fabricação mais antiga: {fabricaçao.strftime('%Y-%m-%d')}\n
-        Data de validade mais próxima: {validade.strftime('%Y-%m-%d')}\n
-        Empresa com mais produtos: {empresa}
-        """
+        empresa = max(set(empresas), key=empresas.count)
+        return (
+            f"Data de fabricação mais antiga: {fabrica.strftime('%Y-%m-%d')}\n"
+            f"Data de validade mais próxima: {validade.strftime('%Y-%m-%d')}\n"
+            f"Empresa com mais produtos: {empresa}"
+        )
