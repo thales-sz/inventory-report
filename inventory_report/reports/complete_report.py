@@ -11,7 +11,6 @@ class CompleteReport(SimpleReport):
         response = ""
         for item, count in qtd_empresas.items():
             response += f"- {item}: {count}\n"
-
         return (
             simple_response + "\nProdutos estocados por empresa:\n" + response
         )
