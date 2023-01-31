@@ -3,7 +3,7 @@ from datetime import datetime
 
 class SimpleReport:
     @staticmethod
-    def generate(data):
+    def generate(data: list[dict]) -> str:
         fabrica = None
         validade = None
         empresa = None
