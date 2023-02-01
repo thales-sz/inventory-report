@@ -1,6 +1,6 @@
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
-import xml.etree.ElementTree as et
+import xmltodict
 import csv
 import json
 
@@ -14,10 +14,9 @@ class Inventory:
             elif file.endswith(".json"):
                 return json.load(archive)
             else:
-                arquivo = et.parse(archive)
-                raiz = arquivo.getroot()
-                for item in raiz:
-                    print(item)
+                data = xmltodict.parse(archive.read())
+                formatted = data["dataset"]["record"]
+                return list(dict(item) for item in formatted)
 
     @classmethod
     def import_data(test, __path__, type):
