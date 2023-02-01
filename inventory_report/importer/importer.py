@@ -1,2 +1,7 @@
-def __init__(self):
-    pass
+from abc import ABC, abstractmethod
+
+
+class Importer(ABC):
+    @abstractmethod
+    def import_data(file):
+        raise NotImplementedError
