@@ -3,7 +3,7 @@ from inventory_report.inventory.inventory import Inventory
 
 
 class CsvImporter(Importer):
-    @classmethod
+    @staticmethod
     def import_data(file):
         if file.endswith(".csv"):
             return Inventory.verify_archive_format(file)

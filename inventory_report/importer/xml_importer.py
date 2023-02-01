@@ -3,7 +3,7 @@ from inventory_report.inventory.inventory import Inventory
 
 
 class XmlImporter(Importer):
-    @classmethod
+    @staticmethod
     def import_data(file):
         if file.endswith(".xml"):
             return Inventory.verify_archive_format(file)

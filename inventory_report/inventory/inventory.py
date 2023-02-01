@@ -17,8 +17,8 @@ class Inventory:
             formatted = data["dataset"]["record"]
             return list(dict(item) for item in formatted)
 
-    @classmethod
-    def import_data(test, __path__, type):
+    @staticmethod
+    def import_data(__path__, type):
         product_list = Inventory.verify_archive_format(__path__)
         if type == "simples":
             return SimpleReport().generate(product_list)
