@@ -19,7 +19,6 @@ class Inventory:
 
     @classmethod
     def import_data(test, __path__, type):
-        print(test, __path__, type)
         product_list = Inventory.verify_archive_format(__path__)
         if type == "simples":
             return SimpleReport().generate(product_list)
